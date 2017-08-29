@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for nodeclub-master/controllers/github.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">nodeclub-master/controllers/</a> github.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.73% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>59/74</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.9% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>26/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.73% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>59/74</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Models         = require('../models');
+var User           = Models.User;
+var authMiddleWare = require('../middlewares/auth');
+var tools          = require('../common/tools');
+var eventproxy     = require('eventproxy');
+var uuid           = require('node-uuid');
+var validator      = require('validator');
+&nbsp;
+exports.callback = function (req, res, next) {
+  var profile = req.user;
+  var email = profile.emails &amp;&amp; profile.emails[0] &amp;&amp; profile.emails[0].value;
+  User.findOne({githubId: profile.id}, function (err, user) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    // 当用户已经是 cnode 用户时，通过 github 登陆将会更新他的资料
+    if (user) {
+      user.githubUsername = profile.username;
+      user.githubId = profile.id;
+      user.githubAccessToken = profile.accessToken;
+      // user.loginname = profile.username;
+      user.avatar = profile._json.avatar_url;
+      user.email = email || <span class="branch-1 cbranch-no" title="branch not covered" >user.email;</span>
+&nbsp;
+&nbsp;
+      user.save(function (err) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+          // 根据 err.err 的错误信息决定如何回应用户，这个地方写得很难看
+<span class="cstat-no" title="statement not covered" >          if (err.message.indexOf('duplicate key error') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >            if (err.message.indexOf('email') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >              return res.status(500)</span>
+                .render('sign/no_github_email');
+            }
+<span class="cstat-no" title="statement not covered" >            if (err.message.indexOf('loginname') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >              return res.status(500)</span>
+                .send('您 GitHub 账号的用户名与之前在 CNodejs 注册的用户名重复了');
+            }
+          }
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        authMiddleWare.gen_session(user, res);
+        return res.redirect('/');
+      });
+    } else {
+      // 如果用户还未存在，则建立新用户
+      req.session.profile = profile;
+      return res.redirect('/auth/github/new');
+    }
+  });
+};
+&nbsp;
+exports.new = function (req, res, next) {
+  res.render('sign/new_oauth', {actionPath: '/auth/github/create'});
+};
+&nbsp;
+exports.create = function (req, res, next) {
+  var profile = req.session.profile;
+&nbsp;
+  var isnew = req.body.isnew;
+  var loginname = validator.trim(req.body.name || '').toLowerCase();
+  var password = validator.trim(req.body.pass || '');
+  var ep = new eventproxy();
+  ep.fail(next);
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!profile) {
+<span class="cstat-no" title="statement not covered" >    return res.redirect('/signin');</span>
+  }
+  delete req.session.profile;
+&nbsp;
+  var email = profile.emails &amp;&amp; profile.emails[0] &amp;&amp; profile.emails[0].value;
+  if (isnew) { // 注册新账号
+    var user = new User({
+      loginname: profile.username,
+      pass: profile.accessToken,
+      email: email,
+      avatar: profile._json.avatar_url,
+      githubId: profile.id,
+      githubUsername: profile.username,
+      githubAccessToken: profile.accessToken,
+      active: true,
+      accessToken: uuid.v4(),
+    });
+    user.save(function (err) {
+      if (err) {
+        // 根据 err.err 的错误信息决定如何回应用户，这个地方写得很难看
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (err.message.indexOf('duplicate key error') !== -1) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (err.message.indexOf('email') !== -1) {
+<span class="cstat-no" title="statement not covered" >            return res.status(500)</span>
+              .render('sign/no_github_email');
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (err.message.indexOf('loginname') !== -1) {
+            return res.status(500)
+              .send('您 GitHub 账号的用户名与之前在 CNodejs 注册的用户名重复了');
+          }
+        }
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+        // END 根据 err.err 的错误信息决定如何回应用户，这个地方写得很难看
+      }
+      authMiddleWare.gen_session(user, res);
+      res.redirect('/');
+    });
+  } else { // 关联老账号
+    ep.on('login_error', <span class="fstat-no" title="function not covered" >function (login_error) {</span>
+<span class="cstat-no" title="statement not covered" >      res.status(403);</span>
+<span class="cstat-no" title="statement not covered" >      res.render('sign/signin', { error: '账号名或密码错误。' });</span>
+    });
+    User.findOne({loginname: loginname},
+      ep.done(function (user) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {
+<span class="cstat-no" title="statement not covered" >          return ep.emit('login_error');</span>
+        }
+        tools.bcompare(password, user.pass, ep.done(function (bool) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (!bool) {
+<span class="cstat-no" title="statement not covered" >            return ep.emit('login_error');</span>
+          }
+          user.githubUsername = profile.username;
+          user.githubId = profile.id;
+          // user.loginname = profile.username;
+          user.avatar = profile._json.avatar_url;
+          user.githubAccessToken = profile.accessToken;
+&nbsp;
+          user.save(function (err) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >              return next(err);</span>
+            }
+            authMiddleWare.gen_session(user, res);
+            res.redirect('/');
+          });
+        }));
+      }));
+  }
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 29 2017 14:22:51 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

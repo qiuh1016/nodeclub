@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for nodeclub-master/api/v1/reply.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">nodeclub-master/api/v1/</a> reply.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>71/75</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84.62% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>22/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>71/75</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var eventproxy = require('eventproxy');
+var validator  = require('validator');
+var Topic      = require('../../proxy').Topic;
+var User       = require('../../proxy').User;
+var Reply      = require('../../proxy').Reply;
+var at         = require('../../common/at');
+var message    = require('../../common/message');
+var config     = require('../../config');
+&nbsp;
+var create = function (req, res, next) {
+  var topic_id = req.params.topic_id;
+  var content  = req.body.content || '';
+  var reply_id = req.body.reply_id;
+&nbsp;
+  var ep = new eventproxy();
+  ep.fail(next);
+&nbsp;
+  var str = validator.trim(content);
+  if (str === '') {
+    res.status(400);
+    return res.send({success: false, error_msg: '回复内容不能为空'});
+  }
+&nbsp;
+  if (!validator.isMongoId(topic_id)) {
+    res.status(400);
+    return res.send({success: false, error_msg: '不是有效的话题id'});
+  }
+  
+  Topic.getTopic(topic_id, ep.done(function (topic) {
+    if (!topic) {
+      res.status(404);
+      return res.send({success: false, error_msg: '话题不存在'});
+    }
+    if (topic.lock) {
+      res.status(403);
+      return res.send({success: false, error_msg: '该话题已被锁定'});
+    }
+    ep.emit('topic', topic);
+  }));
+&nbsp;
+  ep.all('topic', function (topic) {
+    User.getUserById(topic.author_id, ep.done('topic_author'));
+  });
+&nbsp;
+  ep.all('topic', 'topic_author', function (topic, topicAuthor) {
+    Reply.newAndSave(content, topic_id, req.user.id, reply_id, ep.done(function (reply) {
+      Topic.updateLastReply(topic_id, reply._id, ep.done(function () {
+        ep.emit('reply_saved', reply);
+        //发送at消息，并防止重复 at 作者
+        var newContent = content.replace('@' + topicAuthor.loginname + ' ', '');
+        at.sendMessageToMentionUsers(newContent, topic_id, req.user.id, reply._id);
+      }));
+    }));
+&nbsp;
+    User.getUserById(req.user.id, ep.done(function (user) {
+      user.score += 5;
+      user.reply_count += 1;
+      user.save();
+      ep.emit('score_saved');
+    }));
+  });
+&nbsp;
+  ep.all('reply_saved', 'topic', function (reply, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (topic.author_id.toString() !== req.user.id.toString()) {
+<span class="cstat-no" title="statement not covered" >      message.sendReplyMessage(topic.author_id, req.user.id, topic._id, reply._id);</span>
+    }
+    ep.emit('message_saved');
+  });
+&nbsp;
+  ep.all('reply_saved', 'message_saved', 'score_saved', function (reply) {
+    res.send({
+      success: true,
+      reply_id: reply._id
+    });
+  });
+};
+&nbsp;
+exports.create = create;
+&nbsp;
+var ups = function (req, res, next) {
+  var replyId = req.params.reply_id;
+  var userId  = req.user.id;
+&nbsp;
+  if (!validator.isMongoId(replyId)) {
+    res.status(400);
+    return res.send({success: false, error_msg: '不是有效的评论id'});
+  }
+  
+  Reply.getReplyById(replyId, function (err, reply) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    if (!reply) {
+      res.status(404);
+      return res.send({success: false, error_msg: '评论不存在'});
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (reply.author_id.equals(userId) &amp;&amp; !config.debug) {
+<span class="cstat-no" title="statement not covered" >      res.status(403);</span>
+<span class="cstat-no" title="statement not covered" >      return res.send({success: false, error_msg: '不能帮自己点赞'});</span>
+    } else {
+      var action;
+      reply.ups = reply.ups || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+      var upIndex = reply.ups.indexOf(userId);
+      if (upIndex === -1) {
+        reply.ups.push(userId);
+        action = 'up';
+      } else {
+        reply.ups.splice(upIndex, 1);
+        action = 'down';
+      }
+      reply.save(function () {
+        res.send({
+          success: true,
+          action: action
+        });
+      });
+    }
+  });
+};
+&nbsp;
+exports.ups = ups;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 29 2017 14:22:51 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

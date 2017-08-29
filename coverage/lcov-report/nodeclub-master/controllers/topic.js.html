@@ -1,0 +1,1487 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for nodeclub-master/controllers/topic.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">nodeclub-master/controllers/</a> topic.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.22% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>202/255</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.87% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>76/119</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.18% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>41/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.22% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>202/255</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * nodeclub - controllers/topic.js
+ */
+&nbsp;
+/**
+ * Module dependencies.
+ */
+&nbsp;
+var validator = require('validator');
+&nbsp;
+var at           = require('../common/at');
+var User         = require('../proxy').User;
+var Topic        = require('../proxy').Topic;
+var TopicCollect = require('../proxy').TopicCollect;
+var EventProxy   = require('eventproxy');
+var tools        = require('../common/tools');
+var store        = require('../common/store');
+var config       = require('../config');
+var _            = require('lodash');
+var cache        = require('../common/cache');
+var logger = require('../common/logger')
+&nbsp;
+/**
+ * Topic page
+ *
+ * @param  {HttpRequest} req
+ * @param  {HttpResponse} res
+ * @param  {Function} next
+ */
+exports.index = function (req, res, next) {
+<span class="fstat-no" title="function not covered" >  function isUped(user, reply) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!reply.ups) {</span>
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return reply.ups.indexOf(user._id) !== -1;</span>
+  }
+&nbsp;
+  var topic_id = req.params.tid;
+  var currentUser = req.session.user;
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (topic_id.length !== 24) {
+<span class="cstat-no" title="statement not covered" >    return res.render404('此话题不存在或已被删除。');</span>
+  }
+  var events = ['topic', 'other_topics', 'no_reply_topics', 'is_collect'];
+  var ep = EventProxy.create(events,
+    function (topic, other_topics, no_reply_topics, is_collect) {
+    res.render('topic/index', {
+      topic: topic,
+      author_other_topics: other_topics,
+      no_reply_topics: no_reply_topics,
+      is_uped: isUped,
+      is_collect: is_collect,
+    });
+  });
+&nbsp;
+  ep.fail(next);
+&nbsp;
+  Topic.getFullTopic(topic_id, ep.done(function (message, topic, author, replies) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (message) {
+<span class="cstat-no" title="statement not covered" >      logger.error('getFullTopic error topic_id: ' + topic_id)</span>
+<span class="cstat-no" title="statement not covered" >      return res.renderError(message);</span>
+    }
+&nbsp;
+    topic.visit_count += 1;
+    topic.save();
+&nbsp;
+    topic.author  = author;
+    topic.replies = replies;
+&nbsp;
+    // 点赞数排名第三的回答，它的点赞数就是阈值
+    topic.reply_up_threshold = (function () {
+      var allUpCount = replies.map(function (reply) {
+        return reply.ups &amp;&amp; reply.ups.length || 0;
+      });
+      allUpCount = _.sortBy(allUpCount, Number).reverse();
+&nbsp;
+      var threshold = allUpCount[2] || 0;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (threshold &lt; 3) {
+        threshold = 3;
+      }
+      return threshold;
+    })();
+&nbsp;
+    ep.emit('topic', topic);
+&nbsp;
+    // get other_topics
+    var options = { limit: 5, sort: '-last_reply_at'};
+    var query = { author_id: topic.author_id, _id: { '$nin': [ topic._id ] } };
+    Topic.getTopicsByQuery(query, options, ep.done('other_topics'));
+&nbsp;
+    // get no_reply_topics
+    cache.get('no_reply_topics', ep.done(function (no_reply_topics) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (no_reply_topics) {
+        ep.emit('no_reply_topics', no_reply_topics);
+      } else {
+<span class="cstat-no" title="statement not covered" >        Topic.getTopicsByQuery(</span>
+          { reply_count: 0, tab: {$nin: ['job', 'dev']}},
+          { limit: 5, sort: '-create_at'},
+          ep.done('no_reply_topics', <span class="fstat-no" title="function not covered" >function (no_reply_topics) {</span>
+<span class="cstat-no" title="statement not covered" >            cache.set('no_reply_topics', no_reply_topics, 60 * 1);</span>
+<span class="cstat-no" title="statement not covered" >            return no_reply_topics;</span>
+          }));
+      }
+    }));
+  }));
+&nbsp;
+  if (!currentUser) {
+    ep.emit('is_collect', null);
+  } else {
+    TopicCollect.getTopicCollect(currentUser._id, topic_id, ep.done('is_collect'))
+  }
+};
+&nbsp;
+exports.create = function (req, res, next) {
+  res.render('topic/edit', {
+    tabs: config.tabs
+  });
+};
+&nbsp;
+&nbsp;
+exports.put = function (req, res, next) {
+  var title   = validator.trim(req.body.title);
+  var tab     = validator.trim(req.body.tab);
+  var content = validator.trim(req.body.t_content);
+&nbsp;
+  // 得到所有的 tab, e.g. ['ask', 'share', ..]
+  var allTabs = config.tabs.map(function (tPair) {
+    return tPair[0];
+  });
+&nbsp;
+  // 验证
+  var editError;
+  if (title === '') {
+    editError = '标题不能是空的。';
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (title.length &lt; 5 || title.length &gt; 100) {
+<span class="cstat-no" title="statement not covered" >    editError = '标题字数太多或太少。';</span>
+  } else if (!tab || allTabs.indexOf(tab) === -1) {
+    editError = '必须选择一个版块。';
+  } else if (content === '') {
+    editError = '内容不可为空';
+  }
+  // END 验证
+&nbsp;
+  if (editError) {
+    res.status(422);
+    return res.render('topic/edit', {
+      edit_error: editError,
+      title: title,
+      content: content,
+      tabs: config.tabs
+    });
+  }
+&nbsp;
+  Topic.newAndSave(title, content, tab, req.session.user._id, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+&nbsp;
+    var proxy = new EventProxy();
+&nbsp;
+    proxy.all('score_saved', function () {
+      res.redirect('/topic/' + topic._id);
+    });
+    proxy.fail(next);
+    User.getUserById(req.session.user._id, proxy.done(function (user) {
+      user.score += 5;
+      user.topic_count += 1;
+      user.save();
+      req.session.user = user;
+      proxy.emit('score_saved');
+    }));
+&nbsp;
+    //发送at消息
+    at.sendMessageToMentionUsers(content, topic._id, req.session.user._id);
+  });
+};
+&nbsp;
+exports.showEdit = function (req, res, next) {
+  var topic_id = req.params.tid;
+&nbsp;
+  Topic.getTopicById(topic_id, function (err, topic, tags) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (String(topic.author_id) === String(req.session.user._id) || <span class="branch-1 cbranch-no" title="branch not covered" >req.session.user.is_admin)</span> {
+      res.render('topic/edit', {
+        action: 'edit',
+        topic_id: topic._id,
+        title: topic.title,
+        content: topic.content,
+        tab: topic.tab,
+        tabs: config.tabs
+      });
+    } else {
+<span class="cstat-no" title="statement not covered" >      res.renderError('对不起，你不能编辑此话题。', 403);</span>
+    }
+  });
+};
+&nbsp;
+exports.update = function (req, res, next) {
+  var topic_id = req.params.tid;
+  var title    = req.body.title;
+  var tab      = req.body.tab;
+  var content  = req.body.t_content;
+&nbsp;
+  Topic.getTopicById(topic_id, function (err, topic, tags) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (topic.author_id.equals(req.session.user._id) || <span class="branch-1 cbranch-no" title="branch not covered" >req.session.user.is_admin)</span> {
+      title   = validator.trim(title);
+      tab     = validator.trim(tab);
+      content = validator.trim(content);
+&nbsp;
+      // 验证
+      var editError;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (title === '') {
+<span class="cstat-no" title="statement not covered" >        editError = '标题不能是空的。';</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (title.length &lt; 5 || title.length &gt; 100) {
+<span class="cstat-no" title="statement not covered" >        editError = '标题字数太多或太少。';</span>
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (!tab) {
+<span class="cstat-no" title="statement not covered" >        editError = '必须选择一个版块。';</span>
+      }
+      // END 验证
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (editError) {
+<span class="cstat-no" title="statement not covered" >        return res.render('topic/edit', {</span>
+          action: 'edit',
+          edit_error: editError,
+          topic_id: topic._id,
+          content: content,
+          tabs: config.tabs
+        });
+      }
+&nbsp;
+      //保存话题
+      topic.title     = title;
+      topic.content   = content;
+      topic.tab       = tab;
+      topic.update_at = new Date();
+&nbsp;
+      topic.save(function (err) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        //发送at消息
+        at.sendMessageToMentionUsers(content, topic._id, req.session.user._id);
+&nbsp;
+        res.redirect('/topic/' + topic._id);
+&nbsp;
+      });
+    } else {
+<span class="cstat-no" title="statement not covered" >      res.renderError('对不起，你不能编辑此话题。', 403);</span>
+    }
+  });
+};
+&nbsp;
+exports.delete = function (req, res, next) {
+  //删除话题, 话题作者topic_count减1
+  //删除回复，回复作者reply_count减1
+  //删除topic_collect，用户collect_topic_count减1
+&nbsp;
+  var topic_id = req.params.tid;
+&nbsp;
+  Topic.getFullTopic(topic_id, function (err, err_msg, topic, author, replies) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return res.send({ success: false, message: err.message });</span>
+    }
+    if (!req.session.user.is_admin &amp;&amp; !(topic.author_id.equals(req.session.user._id))) {
+      res.status(403);
+      return res.send({success: false, message: '无权限'});
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.status(422);</span>
+<span class="cstat-no" title="statement not covered" >      return res.send({ success: false, message: '此话题不存在或已被删除。' });</span>
+    }
+    author.score -= 5;
+    author.topic_count -= 1;
+    author.save();
+&nbsp;
+    topic.deleted = true;
+    topic.save(function (err) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return res.send({ success: false, message: err.message });</span>
+      }
+      res.send({ success: true, message: '话题已被删除。' });
+    });
+  });
+};
+&nbsp;
+// 设为置顶
+exports.top = function (req, res, next) {
+  var topic_id = req.params.tid;
+  var referer  = req.get('referer');
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (topic_id.length !== 24) {
+<span class="cstat-no" title="statement not covered" >    res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+  Topic.getTopic(topic_id, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    topic.top = !topic.top;
+    topic.save(function (err) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+      }
+      var msg = topic.top ? '此话题已置顶。' : '此话题已取消置顶。';
+      res.render('notify/notify', {success: msg, referer: referer});
+    });
+  });
+};
+&nbsp;
+// 设为精华
+exports.good = function (req, res, next) {
+  var topicId = req.params.tid;
+  var referer = req.get('referer');
+&nbsp;
+  Topic.getTopic(topicId, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    topic.good = !topic.good;
+    topic.save(function (err) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+      }
+      var msg = topic.good ? '此话题已加精。' : '此话题已取消加精。';
+      res.render('notify/notify', {success: msg, referer: referer});
+    });
+  });
+};
+&nbsp;
+// 锁定主题，不可再回复
+exports.lock = function (req, res, next) {
+  var topicId = req.params.tid;
+  var referer = req.get('referer');
+  Topic.getTopic(topicId, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.render404('此话题不存在或已被删除。');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    topic.lock = !topic.lock;
+    topic.save(function (err) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+      }
+      var msg = topic.lock ? '此话题已锁定。' : '此话题已取消锁定。';
+      res.render('notify/notify', {success: msg, referer: referer});
+    });
+  });
+};
+&nbsp;
+// 收藏主题
+exports.collect = function (req, res, next) {
+  var topic_id = req.body.topic_id;
+&nbsp;
+  Topic.getTopic(topic_id, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.json({status: 'failed'});</span>
+    }
+&nbsp;
+    TopicCollect.getTopicCollect(req.session.user._id, topic._id, function (err, doc) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+      }
+      if (doc) {
+        res.json({status: 'failed'});
+        return;
+      }
+&nbsp;
+      TopicCollect.newAndSave(req.session.user._id, topic._id, function (err) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        res.json({status: 'success'});
+      });
+      User.getUserById(req.session.user._id, function (err, user) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        user.collect_topic_count += 1;
+        user.save();
+      });
+&nbsp;
+      req.session.user.collect_topic_count += 1;
+      topic.collect_count += 1;
+      topic.save();
+    });
+  });
+};
+&nbsp;
+exports.de_collect = function (req, res, next) {
+  var topic_id = req.body.topic_id;
+  Topic.getTopic(topic_id, function (err, topic) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >      return next(err);</span>
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!topic) {
+<span class="cstat-no" title="statement not covered" >      res.json({status: 'failed'});</span>
+    }
+    TopicCollect.remove(req.session.user._id, topic._id, function (err, removeResult) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        return next(err);</span>
+      }
+      if (removeResult.result.n == 0) {
+        return res.json({status: 'failed'})
+      }
+&nbsp;
+      User.getUserById(req.session.user._id, function (err, user) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        user.collect_topic_count -= 1;
+        req.session.user = user;
+        user.save();
+      });
+&nbsp;
+      topic.collect_count -= 1;
+      topic.save();
+&nbsp;
+      res.json({status: 'success'});
+    });
+  });
+};
+&nbsp;
+exports.upload = function (req, res, next) {
+  var isFileLimit = false;
+  req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+      file.on('limit', <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        isFileLimit = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.json({</span>
+          success: false,
+          msg: 'File size too large. Max is ' + config.file_limit
+        })
+      });
+&nbsp;
+      store.upload(file, {filename: filename}, function (err, result) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          return next(err);</span>
+        }
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (isFileLimit) {
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+        res.json({
+          success: true,
+          url: result.url,
+        });
+      });
+&nbsp;
+    });
+&nbsp;
+  req.pipe(req.busboy);
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Aug 29 2017 14:22:51 GMT+0800 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
