@@ -10,8 +10,8 @@ var config = {
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
 
-  name: 'Nodeclub_qh', // 社区名字
-  description: 'CNode：Node.js专业中文社区_qh', // 社区的描述
+  name: '海电院研发社区', // 社区名字
+  description: '海电院研发技术交流社区', // 社区的描述
   keywords: 'nodejs, node, express, connect, socket.io',
 
   // 添加到 html head 中的信息
@@ -38,7 +38,7 @@ var config = {
   cnzz_tracker_id: '',
 
   // mongodb 配置
-  db: 'mongodb://127.0.0.1/node_club_dev',
+  db: 'mongodb://127.0.0.1/hdy_club_dev',
 
   // redis 配置，默认是本地
   redis_host: '127.0.0.1',
@@ -46,8 +46,8 @@ var config = {
   redis_db: 0,
   redis_password: '',
 
-  session_secret: 'node_club_secret_qh', // 务必修改
-  auth_cookie_name: 'node_club_qh',
+  session_secret: 'hdy_club_secret', // 务必修改
+  auth_cookie_name: 'hdy_club',
 
   // 程序运行的端口
   port: 3000,
@@ -142,7 +142,8 @@ var config = {
 };
 
 if (process.env.NODE_ENV === 'test') {
-  config.db = 'mongodb://127.0.0.1/node_club_test';
+  config.db = 'mongodb://127.0.0.1/hdy_club_test';
 }
 
 module.exports = config;
+// db.adminCommand({renameCollection: "node_club_dev.messages", to: "hdy_club_dev.messages"})
