@@ -50,7 +50,7 @@ var config = {
   auth_cookie_name: 'hdy_club',
 
   // 程序运行的端口
-  port: 8083,
+  port: 80,
 
   // 话题列表显示的话题数量
   list_topic_count: 20,
