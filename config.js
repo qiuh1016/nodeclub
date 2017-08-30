@@ -10,7 +10,7 @@ var config = {
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
 
-  name: '海电院研发社区', // 社区名字
+  name: 'hdyClub', // 社区名字
   description: '海电院研发技术交流社区', // 社区的描述
   keywords: 'nodejs, node, express, connect, socket.io',
 
@@ -124,6 +124,7 @@ var config = {
   // 版块
   tabs: [
     ['share', '分享'],
+    ['mark', '记录'],
     ['ask', '问答'],
     ['job', '招聘'],
   ],
