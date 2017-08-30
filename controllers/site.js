@@ -20,6 +20,7 @@ var _            = require('lodash');
 var moment       = require('moment');
 
 exports.index = function (req, res, next) {
+  console.log(111);
   var page = parseInt(req.query.page, 10) || 1;
   page = page > 0 ? page : 1;
   var tab = req.query.tab || 'all';
