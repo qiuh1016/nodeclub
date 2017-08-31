@@ -17,5 +17,5 @@ if (config.debug) {
     };
   };
 
-  mongoose.Mongoose.prototype.mquery.setGlobalTraceFunction(traceMQuery);
+  // mongoose.Mongoose.prototype.mquery.setGlobalTraceFunction(traceMQuery);
 }

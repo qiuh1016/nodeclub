@@ -119,7 +119,7 @@ var config = {
     url: '/public/upload/'
   },
 
-  file_limit: '1MB',
+  file_limit: '3MB',
 
   // 版块
   tabs: [
