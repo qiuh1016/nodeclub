@@ -152,10 +152,6 @@ if (process.env.PORT != null) {
 
 if (process.env.NODE_ENV == 'debug') {
   config.debug = true;
-  config.port = 8083;
-  console.log('debug');
-} else {
-  console.log('not debug');
 }
 
 module.exports = config;
