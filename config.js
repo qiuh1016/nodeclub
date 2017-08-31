@@ -6,7 +6,7 @@ var path = require('path');
 
 var config = {
   // debug 为 true 时，用于本地调试
-  debug: false,
+  debug: true,
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
 
@@ -31,7 +31,7 @@ var config = {
   // cdn host，如 http://cnodejs.qiniudn.com
   site_static_host: '', // 静态文件存储域名
   // 社区的域名
-  host: 'hdyclub.club',
+  host: 'cetcme.cetcmeyf.com:8093',
   // 默认的Google tracker ID，自有站点请修改，申请地址：http://www.google.com/analytics/
   google_tracker_id: '',
   // 默认的cnzz tracker ID，自有站点请修改
@@ -50,17 +50,17 @@ var config = {
   auth_cookie_name: 'hdy_club',
 
   // 程序运行的端口
-  port: 80,
+  port: 8083,
 
   // 话题列表显示的话题数量
   list_topic_count: 20,
 
   // RSS配置
   rss: {
-    title: 'CNode：Node.js专业中文社区',
-    link: 'http://cnodejs.org',
+    title: 'hdyClub社区',
+    link: 'http://cetcme.cetcmeyf.com:8093',
     language: 'zh-cn',
-    description: 'CNode：Node.js专业中文社区',
+    description: 'hdyClub：海电院技术交流社区',
     //最多获取的RSS Item数量
     max_rss_items: 50
   },
@@ -126,7 +126,7 @@ var config = {
     ['share', '分享'],
     ['mark', '记录'],
     ['ask', '问答'],
-    ['job', '招聘'],
+    // ['job', '招聘'],
   ],
 
   // 极光推送
