@@ -6,12 +6,12 @@ var path = require('path');
 
 var config = {
   // debug 为 true 时，用于本地调试
-  debug: true,
+  debug: false,
 
   get mini_assets() { return !this.debug; }, // 是否启用静态文件的合并压缩，详见视图中的Loader
 
   name: 'hdyClub', // 社区名字
-  description: '海电院研发技术交流社区', // 社区的描述
+  description: '海电院技术交流社区', // 社区的描述
   keywords: 'nodejs, node, express, connect, socket.io',
 
   // 添加到 html head 中的信息
@@ -31,7 +31,7 @@ var config = {
   // cdn host，如 http://cnodejs.qiniudn.com
   site_static_host: '', // 静态文件存储域名
   // 社区的域名
-  host: 'http://cetcme.cetcmeyf.com:8093',
+  host: 'hdyclub.club',
   // 默认的Google tracker ID，自有站点请修改，申请地址：http://www.google.com/analytics/
   google_tracker_id: '',
   // 默认的cnzz tracker ID，自有站点请修改
@@ -146,5 +146,16 @@ if (process.env.NODE_ENV === 'test') {
   config.db = 'mongodb://127.0.0.1/hdy_club_test';
 }
 
+if (process.env.PORT != null) {
+  config.port = process.env.PORT;
+}
+
+if (process.env.NODE_ENV == 'debug') {
+  config.debug = true;
+  config.port = 8083;
+  console.log('debug');
+} else {
+  console.log('not debug');
+}
+
 module.exports = config;
-// db.adminCommand({renameCollection: "node_club_dev.messages", to: "hdy_club_dev.messages"})
