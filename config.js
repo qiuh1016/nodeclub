@@ -70,7 +70,7 @@ var config = {
   // 邮箱配置
   mail_opts: {
     host: 'smtp.126.com',
-    port: 25,
+    port: 80,
     auth: {
       user: 'qiuh1016@126.com',
       pass: 'qiuhong1016'
