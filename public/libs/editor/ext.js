@@ -2,6 +2,8 @@
     // Set default options
     var md = new markdownit();
 
+    var fileSingleSizeLimit = 50; // MB
+
     md.set({
       html:         false,        // Enable HTML tags in source
       xhtmlOut:     false,        // Use '/' to close single tags (<br />)
@@ -124,7 +126,7 @@
             paste: document.body,
             dnd: this.$upload[0],
             auto: true,
-            fileSingleSizeLimit: 2 * 1024 * 1024,
+            fileSingleSizeLimit: fileSingleSizeLimit * 1024 * 1024,
             //sendAsBinary: true,
             // 只允许选择图片文件。
             /* accept: {
@@ -167,7 +169,7 @@
             switch(type){
                 case 'Q_EXCEED_SIZE_LIMIT':
                 case 'F_EXCEED_SIZE':
-                    self.showError('文件太大了, 不能超过2M');
+                    self.showError(`文件太大了, 不能超过${fileSingleSizeLimit}M`);
                     break;
                 case 'Q_TYPE_DENIED':
                     self.showError('只能上传图片');
