@@ -127,11 +127,11 @@
             fileSingleSizeLimit: 2 * 1024 * 1024,
             //sendAsBinary: true,
             // 只允许选择图片文件。
-            accept: {
+            /* accept: {
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
                 mimeTypes: 'image/*'
-            }
+            } */
         });
 
         this.uploader.on('beforeFileQueued', function(file){
