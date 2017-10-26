@@ -72,8 +72,8 @@ var config = {
     host: 'smtp.126.com',
     port: 465,
     auth: {
-      user: 'qiuh1016@126.com',
-      pass: 'qiuhong1016'
+      user: 'hdysystem@126.com',
+      pass: 'abc123'
     },
     ignoreTLS: true,
   },
